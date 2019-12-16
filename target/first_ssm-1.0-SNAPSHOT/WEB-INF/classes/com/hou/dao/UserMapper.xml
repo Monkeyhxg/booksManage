@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hou.dao.UserMapper">
+    <insert id="addUser" parameterType="Users">
+        insert into ssmbuild.users(userName, userPassword, userSex, userAge, userAddress, userBirthday, userPhone)
+        values (#{userName},#{userPassword},#{userSex},#{userAge},#{userAddress},#{userBirthday},#{userPhone})
+    </insert>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from ssmbuild.users where ssmbuild.users.userId = #{UserId}
+    </delete>
+
+    <select id="getUser" resultType="Users" parameterType="int">
+        select * from ssmbuild.users where userId = ${UserId}
+    </select>
+
+    <select id="getAllUsers" resultType="Users">
+        select * from ssmbuild.users
+    </select>
+
+    <update id="updateUser" parameterType="Users">
+        update ssmbuild.users set userName = #{userName},userPassword = #{userPassword},userSex = #{userSex},userAge = #{userAge},userAddress = #{userAddress},userBirthday = #{userBirthday},userPhone = #{userPhone}
+        where userId = #{userId}
+    </update>
+
+    <select id="getNameUser" resultType="Users" parameterType="String">
+        select * from ssmbuild.users where userName = #{userName}
+        and userPassword = #{userPassword}
+    </select>
+
+</mapper>
